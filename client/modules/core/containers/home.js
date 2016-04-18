@@ -18,6 +18,7 @@ export const composer = ({context}, onData) => {
 
   Tracker.autorun(function () {
     // Session persists across hot code push, not Reactive Dict
+    // Does not persist across reload of page. But shouldn't matter for Electron app.
     const token = Session.get('_storedLoginToken');
     console.log(`_storedLoginToken, ${token}`);
     if (token) {
