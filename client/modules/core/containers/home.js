@@ -12,17 +12,24 @@ const depsMapper = (context, actions) => ({
 export const composer = ({context}, onData) => {
   const {Meteor, FlowRouter, Collections, remote} = context();
 
-  remote.subscribe('self');
-  remote.subscribe('users');
-  remote.subscribe('things');
-
-  const things = Collections.Things.find().fetch();
-  const users = Meteor.users.find().fetch();
+  const subSelf = remote.subscribe('self');
+  const subUsers = remote.subscribe('users');
+  const subThings = remote.subscribe('things');
 
   const userId = Meteor.userId();
-  const user = Meteor.users.findOne(userId);
+  if (userId) {
+    if (subSelf.ready() && subUsers.ready() && subThings.ready()) {
+      const things = Collections.Things.find().fetch();
+      const users = Meteor.users.find().fetch();
+      const user = Meteor.users.findOne(userId);
 
-  onData(null, {things, users, user});
+      onData(null, {things, users, user});
+    }
+  }
+  else {
+    onData(null, {things: [], users: []});
+  }
+
 };
 
 export default composeAll(
