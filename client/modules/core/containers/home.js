@@ -1,4 +1,3 @@
-import React from 'react';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Home from '../components/Home.jsx';
 
@@ -9,13 +8,16 @@ const depsMapper = (context, actions) => ({
 });
 
 export const composer = ({context}, onData) => {
-  const {Meteor, FlowRouter, Collections} = context();
-  onData(null, {});
+  const {Meteor, FlowRouter, Collections, remote} = context();
+
+  const sub = remote.subscribe('self');
+  console.log(sub);
+  // if (sub.ready()) {
+    onData(null, {});
+  // }
 };
 
 export default composeAll(
-  composeWithTracker(composer, function () {
-    return React.createElement('div', null);
-  }),
+  composeWithTracker(composer),
   useDeps(depsMapper)
 )(Home);
