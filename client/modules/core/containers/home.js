@@ -5,11 +5,16 @@ const depsMapper = (context, actions) => ({
   context: () => context,
   callRemoteMethod: actions.all.callRemoteMethod,
   login: actions.all.login,
+  logout: actions.all.logout,
   createUser: actions.all.createUser
 });
 
 export const composer = ({context}, onData) => {
   const {Meteor, FlowRouter, Collections, remote} = context();
+
+  remote.subscribe('self');
+  remote.subscribe('users');
+  remote.subscribe('things');
 
   const things = Collections.Things.find().fetch();
   const users = Meteor.users.find().fetch();

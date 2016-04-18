@@ -22,7 +22,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { callRemoteMethod, things, users, user } = this.props;
+    const { callRemoteMethod, things, users, user, logout } = this.props;
     return (
       <div id="main-page">
         <div>Hello World</div>
@@ -33,6 +33,7 @@ export default class Home extends React.Component {
           <input type="password" ref={ref => this.password = ref} placeholder="password"/>
           <button onClick={this.login}>Login</button>
           <button onClick={this.createUser}>Create user</button>
+          <button onClick={logout}>Logout</button>
         </div>
 
         <div>

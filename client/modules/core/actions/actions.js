@@ -27,6 +27,15 @@ export default {
     });
   },
 
+  logout({Meteor}) {
+    Meteor.logout(err => {
+      if (err) { alert(err); }
+      else {
+        console.log('logged out!');
+      }
+    });
+  },
+
   createUser({Meteor}, username, password) {
     console.log('createUser');
     Accounts.createUser({
