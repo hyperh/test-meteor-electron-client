@@ -31,4 +31,4 @@ accounts-base
 accounts-ui
 accounts-password
 
-meson:electron
+# meson:electron
