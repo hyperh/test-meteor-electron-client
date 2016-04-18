@@ -5,6 +5,15 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 import {ReactiveDict} from 'meteor/reactive-dict';
 import {Tracker} from 'meteor/tracker';
 import { Session } from 'meteor/session';
+import _ from 'lodash';
+
+// Do this if you want to stick with regular Meteor calls. Might break stuff though.
+// const funcNames = [
+//   'subscribe', 'methods', 'call', 'apply', 'status', 'reconnect', 'disconnect'
+// ];
+// funcNames.forEach(name => {
+//   Meteor[name] = _.bind(remote[name], remote);
+// });
 
 export default function () {
   return {
