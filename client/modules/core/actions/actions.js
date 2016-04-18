@@ -1,5 +1,3 @@
-import { Accounts } from 'meteor/accounts-base';
-
 export default {
   callRemoteMethod({remote}) {
     console.log('callRemoteMethod');
@@ -10,8 +8,16 @@ export default {
     });
   },
 
-  login({remote}, username, pwd) {
+  login({Meteor}, username, pwd) {
     console.log('login');
     console.log(`${username}, ${pwd}`);
+
+    Meteor.loginWithPassword(username, pwd, err => {
+      if (err) { alert(err); }
+      else {
+        console.log('logged in!');
+        console.log(Meteor.userId());
+      }
+    });
   }
 };
