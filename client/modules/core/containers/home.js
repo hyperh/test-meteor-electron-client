@@ -1,4 +1,6 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import { Accounts } from 'meteor/accounts-base';
+
 import Home from '../components/Home.jsx';
 
 const depsMapper = (context, actions) => ({
@@ -10,13 +12,34 @@ const depsMapper = (context, actions) => ({
 });
 
 export const composer = ({context}, onData) => {
-  const {Meteor, FlowRouter, Collections, remote} = context();
+  const {Meteor, Collections, remote, Tracker, LocalState} = context();
+
+  const userId = Meteor.userId();
+
+  Tracker.autorun(function () {
+    var token = LocalState.get('_storedLoginToken');
+    console.log(`_storedLoginToken, ${token}`);
+    if (token) {
+      Meteor.loginWithToken(token, function (err) {
+        // this is going to throw error if we logged out
+        if (!err) { console.log(`loginWithToken, ${token}`); }
+      });
+    }
+  });
+
+  Tracker.autorun(function () {
+    const user = Meteor.users.findOne(userId);
+    if (user) {
+      console.log('storing token...');
+      LocalState.set('_storedLoginToken', Accounts._storedLoginToken());
+    }
+  });
+
 
   const subSelf = remote.subscribe('self');
   const subUsers = remote.subscribe('users');
   const subThings = remote.subscribe('things');
 
-  const userId = Meteor.userId();
   if (userId) {
     if (subSelf.ready() && subUsers.ready() && subThings.ready()) {
       const things = Collections.Things.find().fetch();
