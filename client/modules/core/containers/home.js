@@ -4,7 +4,8 @@ import Home from '../components/Home.jsx';
 
 const depsMapper = (context, actions) => ({
   context: () => context,
-  callRemoteMethod: actions.actions.callRemoteMethod
+  callRemoteMethod: actions.all.callRemoteMethod,
+  login: actions.all.login
 });
 
 export const composer = ({context}, onData) => {

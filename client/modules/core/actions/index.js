@@ -1,5 +1,5 @@
-import actions from './actions';
+import all from './actions';
 
 export default {
-  actions
+  all
 };
