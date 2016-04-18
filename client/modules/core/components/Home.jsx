@@ -26,7 +26,7 @@ export default class Home extends React.Component {
     return (
       <div id="main-page">
         <div>Hello World</div>
-        <button onClick={callRemoteMethod}>Call remote method</button>
+        <button onClick={callRemoteMethod}>Add new thing to remote</button>
 
         <div>
           <input type="text" ref={ref => this.username = ref} placeholder="username"/>
@@ -37,17 +37,17 @@ export default class Home extends React.Component {
         </div>
 
         <div>
-          Things
+          <h2>Things</h2>
           {things.map(thing => <div>{thing._id} {thing.text}</div>)}
         </div>
 
         <div>
-          Users
+          <h2>Users</h2>
           {users.map(_user => <div>{_user._id} {_user.username}</div>)}
         </div>
 
         <div>
-          <h1>Current User: {user ? user._id : null} {user ? user.username : null}</h1>
+          <h2>Current User: {user ? user._id : null} {user ? user.username : null}</h2>
         </div>
       </div>
     );
