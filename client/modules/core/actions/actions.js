@@ -1,3 +1,5 @@
+import { Accounts } from 'meteor/accounts-base';
+
 export default {
   callRemoteMethod({remote}) {
     console.log('callRemoteMethod');
@@ -8,11 +10,11 @@ export default {
     });
   },
 
-  login({Meteor}, username, pwd) {
+  login({Meteor}, username, password) {
     console.log('login');
-    console.log(`username ${username}, pwd ${pwd}`);
+    console.log(`username ${username}, pwd ${password}`);
 
-    Meteor.loginWithPassword(username, pwd, err => {
+    Meteor.loginWithPassword(username, password, err => {
       if (err) { alert(err); }
       else {
         console.log('logged in!');
@@ -22,6 +24,13 @@ export default {
         console.log(`Meteor.users.findOne()`);
         console.log(Meteor.users.findOne(Meteor.userId()));
       }
+    });
+  },
+
+  createUser({Meteor}, username, password) {
+    console.log('createUser');
+    Accounts.createUser({
+      username, password
     });
   }
 };
