@@ -1,7 +1,6 @@
 node_modules/
 .meteor-electron
 .DS_Store
-settings*.json
 npm-shrinkwrap.json
 ssl/
 ssl.pem

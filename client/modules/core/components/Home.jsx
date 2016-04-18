@@ -47,7 +47,7 @@ export default class Home extends React.Component {
         </div>
 
         <div>
-          <h2>Current User: {user ? user._id : null} {user ? user.username : null}</h2>
+          <h2>Current User {user ? user._id : null} {user ? user.username : null}</h2>
         </div>
       </div>
     );
