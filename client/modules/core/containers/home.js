@@ -3,7 +3,8 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Home from '../components/Home.jsx';
 
 const depsMapper = (context, actions) => ({
-  context: () => context
+  context: () => context,
+  callRemoteMethod: actions.actions.callRemoteMethod
 });
 
 export const composer = ({context}, onData) => {

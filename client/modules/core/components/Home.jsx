@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Home = () => (
+const Home = ({callRemoteMethod}) => (
   <div id="main-page">
-    Hello World
+    <div>Hello World</div>
+    <button onClick={callRemoteMethod}>Call remote method</button>
   </div>
 );
 
