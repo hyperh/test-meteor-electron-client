@@ -14,7 +14,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { callRemoteMethod } = this.props;
+    const { callRemoteMethod, things, users } = this.props;
     return (
       <div id="main-page">
         <div>Hello World</div>
@@ -24,6 +24,16 @@ export default class Home extends React.Component {
           <input type="text" ref={ref => this.username = ref} placeholder="username"/>
           <input type="password" ref={ref => this.password = ref} placeholder="password"/>
           <button onClick={this.login}>Login</button>
+        </div>
+
+        <div>
+          Things
+          {things.map(thing => <div>{thing._id} {thing.text}</div>)}
+        </div>
+
+        <div>
+          Users
+          {users.map(user => <div>{user._id} {user.username}</div>)}
         </div>
       </div>
     );
