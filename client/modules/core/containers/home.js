@@ -12,12 +12,13 @@ const depsMapper = (context, actions) => ({
 });
 
 export const composer = ({context}, onData) => {
-  const {Meteor, Collections, remote, Tracker, LocalState} = context();
+  const {Meteor, Collections, remote, Tracker, LocalState, Session} = context();
 
   const userId = Meteor.userId();
 
   Tracker.autorun(function () {
-    var token = LocalState.get('_storedLoginToken');
+    // Session persists across hot code push, not Reactive Dict
+    const token = Session.get('_storedLoginToken');
     console.log(`_storedLoginToken, ${token}`);
     if (token) {
       Meteor.loginWithToken(token, function (err) {
@@ -30,8 +31,8 @@ export const composer = ({context}, onData) => {
   Tracker.autorun(function () {
     const user = Meteor.users.findOne(userId);
     if (user) {
-      console.log('storing token...');
-      LocalState.set('_storedLoginToken', Accounts._storedLoginToken());
+      console.log('storing token........');
+      Session.set('_storedLoginToken', Accounts._storedLoginToken());
     }
   });
 
