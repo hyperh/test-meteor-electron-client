@@ -1,9 +1,13 @@
 import { Accounts } from 'meteor/accounts-base';
 
 export default {
-  callRemoteMethod({remote}) {
+  callRemoteMethod({remote, Meteor}) {
     console.log('callRemoteMethod');
 
+    // Meteor.call('things.add', (err, res) => {
+    //   if (err) { alert(err); }
+    //   else { console.log(`callRemoteMethod ${res}`); }
+    // });
     remote.call('things.add', (err, res) => {
       if (err) { alert(err); }
       else { console.log(`callRemoteMethod ${res}`); }
