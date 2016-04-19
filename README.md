@@ -1,10 +1,7 @@
-# mantra-skeleton
-A skeleton for Mantra.
+# test-meteor-electron-client
+The client side code only. Interacts with remote server through `DDP.connect`.
 
-# Deployment
+# Running the app
 ```
-npm install -g mupx
-# Update mup.json with appropriate server details
-mupx setup
-mupx deploy
+meteor -p 5005
 ```

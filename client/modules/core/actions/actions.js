@@ -27,6 +27,8 @@ export default {
         console.log(Meteor.user());
         console.log(`Meteor.users.findOne()`);
         console.log(Meteor.users.findOne(Meteor.userId()));
+        console.log(`Accounts.user()`);
+        console.log(Accounts.user());
       }
     });
   },
